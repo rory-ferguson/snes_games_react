@@ -1,28 +1,29 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+    constructor() {
+        super();
+        this.state = {
+            result: ''
+        }
+    }
+
+    componentDidMount() {
+        const data = fetch('http://127.0.0.1:8000/')
+            .then((data) => data.json())
+            .then((res) => res)
+            .then(data => {
+                this.setState({ result: data })
+            });
+    }
+    render() {
+        console.log(this.state.result)
+        return (
+            <div>
+                <h2>{this.state.result.users}</h2>
+            </div>
+        )
+    }
 }
 
 export default App;

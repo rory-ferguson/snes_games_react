@@ -4,23 +4,29 @@ class App extends Component {
     constructor() {
         super();
         this.state = {
-            result: ''
+            result: []
         }
     }
 
     componentDidMount() {
-        const data = fetch('http://127.0.0.1:8000/')
-            .then((data) => data.json())
-            .then((res) => res)
-            .then(data => {
+        fetch('http://127.0.0.1:8000/games')
+            .then(data => data.json())
+            .then((data) => {
                 this.setState({ result: data })
-            });
+                console.log(this.state.result)
+            })
+            .catch(console.log);
     }
     render() {
-        console.log(this.state.result)
+        
         return (
             <div>
-                <h2>{this.state.result.users}</h2>
+                <h1>My Results</h1>
+                <div class="results-container">
+                {this.state.result.map((result) => (
+                    <h3>{result.title}</h3>
+                ))}
+                </div>
             </div>
         )
     }

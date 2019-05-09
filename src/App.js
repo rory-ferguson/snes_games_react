@@ -24,7 +24,10 @@ class App extends Component {
                 <h1>My Results</h1>
                 <div class="results-container">
                 {this.state.result.map((result) => (
-                    <h3>{result.title}</h3>
+                    <div>
+                        <h3>{result.title}</h3>
+                        <p>Release Date: {result.release}</p>
+                    </div>
                 ))}
                 </div>
             </div>

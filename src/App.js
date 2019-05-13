@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import GameBox from './components/GameBox';
 
 class App extends Component {
     constructor() {
@@ -17,6 +18,7 @@ class App extends Component {
             })
             .catch(console.log);
     }
+
     render() {
         
         return (
@@ -25,8 +27,10 @@ class App extends Component {
                 <div class="results-container">
                 {this.state.result.map((result) => (
                     <div>
-                        <h3>{result.title}</h3>
-                        <p>Release Date: {result.release}</p>
+                        <GameBox>
+                            <h3>{result.title}</h3>
+                            <p>Release Date: {result.release}</p>
+                        </GameBox>
                     </div>
                 ))}
                 </div>

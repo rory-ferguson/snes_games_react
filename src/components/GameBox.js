@@ -13,6 +13,9 @@ class GameBox extends Component {
         return (
             <div style={gameBoxStyles}>
                 {this.props.children}
+                <img src={this.props.image} width="200" height="auto" alt="" />
+                <h3>{this.props.title}</h3>
+                <p>Release Date: {this.props.release}</p>
             </div>
         )
     };

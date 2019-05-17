@@ -27,9 +27,8 @@ class App extends Component {
                 <div class="results-container">
                 {this.state.result.map((result) => (
                     <div>
-                        <GameBox>
-                            <h3>{result.title}</h3>
-                            <p>Release Date: {result.release}</p>
+                        <GameBox title={result.title} release={result.release} image={result.image}>
+
                         </GameBox>
                     </div>
                 ))}

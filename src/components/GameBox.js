@@ -10,7 +10,8 @@ const GameBoxContainer = styled.div`
     border-radius: 5px;
 `
 const GameBoxImage = styled.img`
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
     height: auto;
 `
 const GameBoxH3 = styled.h3`

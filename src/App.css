@@ -1,6 +1,5 @@
-p {
-  margin: 0.25rem auto;
-  padding: 0;
+body p {
+  margin: 0.25rem auto 0.25rem;
 }
 
 .App {

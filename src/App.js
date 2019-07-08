@@ -85,10 +85,10 @@ class App extends Component {
                 </div>
                 <div>
                     <Form onSubmit={this.handleSubmit} class="col-sm-10">
-                        <Col sm={{ span: 8, offset: 2 }}> 
+                        <Col sm={{ span: 6, offset: 3 }}> 
                             <Form.Group controlId="exampleForm.ControlSelect1">
                                 <Row>
-                                    <Col sm="4">
+                                    <Col sm="6">
                                             <Form.Label>Title</Form.Label>   
                                             <Form.Control as="select">
                                                 <option></option>
@@ -97,7 +97,7 @@ class App extends Component {
                                                 ))}
                                             </Form.Control>
                                     </Col>
-                                    <Col sm="4">
+                                    <Col sm="6">
                                             <Form.Label>Publisher</Form.Label>
                                             <Form.Control as="select">
                                                 <option></option>
@@ -106,7 +106,7 @@ class App extends Component {
                                                 ))}
                                             </Form.Control>
                                     </Col>
-                                    <Col sm="4">
+                                    <Col sm="6">
                                         <div>
                                             <Form.Label>Developers</Form.Label>
                                             <Form.Control as="select">
@@ -117,7 +117,7 @@ class App extends Component {
                                             </Form.Control>
                                         </div>
                                     </Col>
-                                    <Col sm="4">
+                                    <Col sm="6">
                                         <div>
                                             <Form.Label>Release Year</Form.Label>
                                             <Form.Control as="select">

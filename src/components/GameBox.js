@@ -10,8 +10,11 @@ const GameBoxContainer = styled.div`
     border-radius: 5px;
 `
 const GameBoxImage = styled.img`
-    width: 200px;
+    width: 300px;
     height: auto;
+`
+const GameBoxH3 = styled.h3`
+    margin-top: 0.5rem;
 `
 
 class GameBox extends Component {
@@ -19,7 +22,8 @@ class GameBox extends Component {
         return (
             <GameBoxContainer>
                 <GameBoxImage src={this.props.image} alt="" />
-                <h3>{this.props.title}</h3>
+                <GameBoxH3>{this.props.title}</GameBoxH3>
+                <p>{this.props.publisher} / {this.props.developer}</p>
                 <p>Release Date: {this.props.release}</p>
             </GameBoxContainer>
         )

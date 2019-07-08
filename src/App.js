@@ -7,7 +7,9 @@ class App extends Component {
         super();
         this.state = {
             result: [],
-            publishers: []
+            publishers: [],
+            developers: [],
+            release: [],
         }
     }
 
@@ -18,6 +20,17 @@ class App extends Component {
                 this.setState({ publishers: data })
             })
 
+        fetch('http://127.0.0.1:8000/release')
+            .then(data => data.json())
+            .then((data) => {
+                this.setState({ release: data })
+            })
+
+        fetch('http://127.0.0.1:8000/developers')
+            .then(data => data.json())
+            .then((data) => {
+                this.setState({ developers: data })
+            })
         fetch('http://127.0.0.1:8000/games')
             .then(data => data.json())
             .then((data) => {
@@ -28,9 +41,22 @@ class App extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         const form = event.target;
-        console.log(form[0].value)
-        var publisher = form[0].value
-        var url = 'http://127.0.0.1:8000/games/?publisher=' + publisher
+
+        const data = {};
+        data['publisher'] = form[0].value
+        data['developer'] = form[1].value
+        data['release'] = form[2].value
+        const querystring = encodeQueryData(data);
+
+        var url = 'http://127.0.0.1:8000/games/?' + querystring
+        
+        function encodeQueryData(data) {
+            const ret = [];
+            for (let d in data)
+              ret.push(encodeURIComponent(d) + '=' + encodeURIComponent(data[d]));
+            return ret.join('&');
+        }
+
         fetch(url)
             .then(data => data.json())
             .then((data) => {
@@ -45,12 +71,33 @@ class App extends Component {
                 <div>
                     <Form onSubmit={this.handleSubmit}>
                         <Form.Group controlId="exampleForm.ControlSelect1">
-                            <Form.Label>Publisher</Form.Label>
-                            <Form.Control as="select">
-                                {this.state.publishers.map((publishers, index) => (
-                                    <option>{publishers}</option>
-                                ))}
-                            </Form.Control>
+                            <div>
+                                <Form.Label>Publisher</Form.Label>
+                                <Form.Control as="select">
+                                    <option></option>
+                                    {this.state.publishers.map((publishers, index) => (
+                                        <option>{publishers}</option>
+                                    ))}
+                                </Form.Control>
+                            </div>
+                            <div>
+                                <Form.Label>Developers</Form.Label>
+                                <Form.Control as="select">
+                                    <option></option>
+                                    {this.state.developers.map((developers, index) => (
+                                        <option>{developers}</option>
+                                    ))}
+                                </Form.Control>
+                            </div>
+                            <div>
+                                <Form.Label>Release Year</Form.Label>
+                                <Form.Control as="select">
+                                    <option></option>
+                                    {this.state.release.map((release, index) => (
+                                        <option>{release}</option>
+                                    ))}
+                                </Form.Control>
+                            </div>
                         </Form.Group>
                         <Button variant="primary" type="submit">
                             Submit

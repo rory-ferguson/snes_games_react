@@ -10,10 +10,17 @@ class App extends Component {
             publishers: [],
             developers: [],
             release: [],
+            title: [],
         }
     }
 
     componentDidMount() {
+        fetch('http://127.0.0.1:8000/title')
+            .then(data => data.json())
+            .then((data) => {
+                this.setState({ title: data })
+            })
+
         fetch('http://127.0.0.1:8000/publishers')
             .then(data => data.json())
             .then((data) => {
@@ -31,6 +38,7 @@ class App extends Component {
             .then((data) => {
                 this.setState({ developers: data })
             })
+
         fetch('http://127.0.0.1:8000/games')
             .then(data => data.json())
             .then((data) => {
@@ -43,9 +51,10 @@ class App extends Component {
         const form = event.target;
 
         const data = {};
-        data['publisher'] = form[0].value
-        data['developer'] = form[1].value
-        data['release'] = form[2].value
+        data['title'] = form[0].value
+        data['publisher'] = form[1].value
+        data['developer'] = form[2].value
+        data['release'] = form[3].value
         const querystring = encodeQueryData(data);
 
         var url = 'http://127.0.0.1:8000/games/?' + querystring
@@ -71,6 +80,15 @@ class App extends Component {
                 <div>
                     <Form onSubmit={this.handleSubmit}>
                         <Form.Group controlId="exampleForm.ControlSelect1">
+                            <div>
+                                <Form.Label>Title</Form.Label>
+                                <Form.Control as="select">
+                                    <option></option>
+                                    {this.state.title.map((title, index) => (
+                                        <option>{title}</option>
+                                    ))}
+                                </Form.Control>
+                            </div>
                             <div>
                                 <Form.Label>Publisher</Form.Label>
                                 <Form.Control as="select">
@@ -105,13 +123,13 @@ class App extends Component {
                     </Form>
                 </div>
                 
-                <h1>My Results</h1>
+                {/* <h1>My Results</h1> */}
                 <div class="results-container">
-                {this.state.result.map((result) => (
-                    <div>
-                        <GameBox title={result.title} release={result.release} image={result.image}></GameBox>
-                    </div>
-                ))}
+                    {this.state.result.map((result) => (
+                        <div>
+                            <GameBox title={result.title} release={result.release} image={result.image}></GameBox>
+                        </div>
+                    ))}
                 </div>
             </div>
         )

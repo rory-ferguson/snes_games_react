@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import GameBox from './components/GameBox';
+import FormControlOption from './components/FormControlOption';
 import { Form, Button, Col, Row } from "react-bootstrap";
 import './App.css'
 
@@ -89,57 +90,37 @@ class App extends Component {
                             <Form.Group controlId="exampleForm.ControlSelect1">
                                 <Row>
                                     <Col sm="6">
-                                            <Form.Label>Title</Form.Label>   
-                                            <Form.Control as="select">
-                                                <option></option>
-                                                {this.state.title.map((title, index) => (
-                                                    <option>{title}</option>
-                                                ))}
-                                            </Form.Control>
+                                        <FormControlOption 
+                                            label="Title" 
+                                            title={this.state.title}
+                                        ></FormControlOption>
                                     </Col>
                                     <Col sm="6">
-                                            <Form.Label>Publisher</Form.Label>
-                                            <Form.Control as="select">
-                                                <option></option>
-                                                {this.state.publishers.map((publishers, index) => (
-                                                    <option>{publishers}</option>
-                                                ))}
-                                            </Form.Control>
+                                        <FormControlOption 
+                                            label="Publisher" 
+                                            title={this.state.publishers}
+                                        ></FormControlOption>
                                     </Col>
                                     <Col sm="6">
-                                        <div>
-                                            <Form.Label>Developers</Form.Label>
-                                            <Form.Control as="select">
-                                                <option></option>
-                                                {this.state.developers.map((developers, index) => (
-                                                    <option>{developers}</option>
-                                                ))}
-                                            </Form.Control>
-                                        </div>
+                                        <FormControlOption 
+                                            label="Developer" 
+                                            title={this.state.developers}
+                                        ></FormControlOption>
                                     </Col>
                                     <Col sm="6">
-                                        <div>
-                                            <Form.Label>Release Year</Form.Label>
-                                            <Form.Control as="select">
-                                                <option></option>
-                                                {this.state.release.map((release, index) => (
-                                                    <option>{release}</option>
-                                                ))}
-                                            </Form.Control>
-                                        </div>
+                                        <FormControlOption 
+                                            label="Release Year" 
+                                            title={this.state.release}
+                                        ></FormControlOption>
                                     </Col>
                                 </Row>
                             </Form.Group>
                         </Col>
                         <Col sm={{ span: 8, offset: 2 }} style={{textAlign: "center"}}>
-                            <Button variant="primary" type="submit">
-                                Submit
-                            </Button>
+                            <Button variant="primary" type="submit">Submit</Button>
                         </Col>
                     </Form>
                 </div>
-                
-                {/* <h1>My Results</h1> */}
                 <div class="results-container">
                     {this.state.result.map((result) => (
                         <div>
